@@ -7,20 +7,19 @@ namespace Projet
     {
         static void Main()
         {
-            Candy[] bonbon = loadCandies(); // Pour loader les bonbons
             
-            // EXEMPLE POUR CALLER Console.WriteLine(bonbon[1].Name);
-            getSelection(); // Demander quel bonbon tu veux
-            getCandy();
+            Candy bonbonChoisi = GetCandy(getSelection()); // Enregistrer le bonbon choisi dans une variable de type Candy en demandant le numero du bonbon
+            
+            Console.WriteLine(bonbonChoisi.Stock);
+            
 
         }
 
-        public static Candy[] loadCandies()
+        public static Candy[] loadCandies() // Fonction qui retourne un array de Candy 
         {
-            Candy[] candies;
-            Data dataManager = new Data(); 
-            candies = dataManager.LoadCandies();
-            return candies;
+            Candy[] candies; 
+            Data dataManager = new Data();
+            return dataManager.LoadCandies();
         }
         
         static int getSelection(int choix = 25)
@@ -36,11 +35,48 @@ namespace Projet
             return selection;
         }
 
-        static void getCandy()
+        static Candy GetCandy(int choixBonbon)
         {
-            return;
+            Candy[] bonbon = loadCandies(); // Pour loader les bonbons
+            return bonbon[choixBonbon]; //Et retourner le bonbon linker avec le choix de l'utilisateur
         }
-        
-        
+
+        static float GetCoin()
+        {
+            byte input;
+            Console.WriteLine("[0] = Annuler");
+            Console.WriteLine("[1] = 5c");
+            Console.WriteLine("[2] = 10c");
+            Console.WriteLine("[3] = 25c");
+            Console.WriteLine("[4] = 1$");
+            Console.WriteLine("[5] = 2$");
+            Console.Write("->");
+            input = Byte.Parse(Console.ReadLine());
+            while (input > 5 || input < 0)
+            {
+                Console.Write("->");
+                input = Byte.Parse(Console.ReadLine());
+            }
+
+            switch (input) // input = montant
+            {
+              case  0:
+                  return 0;
+              case 1:
+                  return 0.05f;
+              case 2:
+                  return 0.1f;
+              case 3:
+                  return 0.25f;
+              case 4:
+                  return 1f;
+              case 5:
+                  return 2f;
+            }
+
+            return 0;
+        }
+
+
     }
 }
