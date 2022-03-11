@@ -1,0 +1,15 @@
+/home/jerome/RiderProjects/Projet/bin/Debug/net6.0/Projet
+/home/jerome/RiderProjects/Projet/bin/Debug/net6.0/Projet.deps.json
+/home/jerome/RiderProjects/Projet/bin/Debug/net6.0/Projet.runtimeconfig.json
+/home/jerome/RiderProjects/Projet/bin/Debug/net6.0/Projet.dll
+/home/jerome/RiderProjects/Projet/bin/Debug/net6.0/Projet.pdb
+/home/jerome/RiderProjects/Projet/obj/Debug/net6.0/Projet.csproj.AssemblyReference.cache
+/home/jerome/RiderProjects/Projet/obj/Debug/net6.0/Projet.GeneratedMSBuildEditorConfig.editorconfig
+/home/jerome/RiderProjects/Projet/obj/Debug/net6.0/Projet.AssemblyInfoInputs.cache
+/home/jerome/RiderProjects/Projet/obj/Debug/net6.0/Projet.AssemblyInfo.cs
+/home/jerome/RiderProjects/Projet/obj/Debug/net6.0/Projet.csproj.CoreCompileInputs.cache
+/home/jerome/RiderProjects/Projet/obj/Debug/net6.0/Projet.dll
+/home/jerome/RiderProjects/Projet/obj/Debug/net6.0/refint/Projet.dll
+/home/jerome/RiderProjects/Projet/obj/Debug/net6.0/Projet.pdb
+/home/jerome/RiderProjects/Projet/obj/Debug/net6.0/Projet.genruntimeconfig.cache
+/home/jerome/RiderProjects/Projet/obj/Debug/net6.0/ref/Projet.dll
