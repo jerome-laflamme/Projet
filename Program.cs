@@ -7,48 +7,43 @@ namespace Projet
     {
         static void Main()
         {
-            int input;
-            decimal coins = 1, sommeRecue = 0;
-
             while (true) // MAIN LOOP
             {
-                bool isComplete = false;
+                int input;
+                decimal coins = 1, sommeRecue = 0;
                 input = getSelection(); // Demander le numero de bonbon
                 Candy bonbonChoisi = GetCandy(input -1); // Enregistrer le bonbon choisi dans une variable de type Candy
                 
-                do {
-                    if (bonbonChoisi.Stock < 1) 
+                if (bonbonChoisi.Stock < 1) // s'assure que le bonbon est en stock
+                {
+                    Board.Print( $"{bonbonChoisi.Name} VIDE!", selection:input); // Imprimer que le bonbon choisi est hors stock
+                }
+                else
+                {
+                    while (bonbonChoisi.Price > sommeRecue && coins != 0) // Redemander de la monnaie tant qu'elle n'est pas 0 ou qu'elle n'a pas ete atteint
                     {
-                        Board.Print( $"{bonbonChoisi.Name} VIDE!", selection:input); // Imprimer que le bonbon choisi est hors stock
-                        isComplete = true;
+                        Board.Print(bonbonChoisi.Name, input, bonbonChoisi.Price, sommeRecue);// Imprimer le tableau au debut du loop pour montrer combien d'argent a ete recu
+                        coins = GetCoin(); // chaque loop, on demande a l'utilisateur de rentrer la somme que j'enregistre dans un variable
+                        sommeRecue += coins; // et je l'additionne a la somme recu
                     }
-                    else
+                    
+                    if (coins == 0) //sorti du loop parce que coin == 0?
                     {
-                        Board.Print(bonbonChoisi.Name, input, bonbonChoisi.Price);
-                        while (bonbonChoisi.Price > sommeRecue && coins != 0) // Redemander de la monnaie tant qu'elle n'est pas 0 ou qu'elle n'a pas ete atteint
-                        {
-                            coins = GetCoin(); // chaque loop, on demande a l'utilisateur de rentrer la somme que j'enregistre dans un variable
-                            sommeRecue += coins; // et je l'additionne a la somme recu
-                            Board.Print(bonbonChoisi.Name, input, bonbonChoisi.Price, sommeRecue);
-                        }
-                        
-                        if (coins == 0) //sorti du loop parce que coin == 0?
-                        {
-                            Board.Print("ANNULÉ", returned: sommeRecue);// si on entre 0,
-                            isComplete = true;
-                        }
-                        else // Sorti du loop parce qu'on a assez de monnaie
-                        {
-                            // TRANSACTION COMPLETE
-                            Board.Print("Prenez votre friandise...", input, bonbonChoisi.Price, sommeRecue, coins - bonbonChoisi.Price, bonbonChoisi.Name); // Final print
-                            bonbonChoisi.Stock--; // retirer 1 bonbon de l'inventaire 
-                            isComplete = true;
-                        }
+                        Board.Print("ANNULÉ", returned: sommeRecue);// si on entre 0,
                     }
-                } while (!isComplete);
+                    else // Sorti du loop parce qu'on a assez de monnaie
+                    {
+                        // TRANSACTION COMPLETE
+                        Board.Print("Prenez votre friandise...", input, bonbonChoisi.Price, sommeRecue, sommeRecue - bonbonChoisi.Price, bonbonChoisi.Name); // Final print
+                        bonbonChoisi.Stock--; // retirer 1 bonbon de l'inventaire 
+                        Console.WriteLine(bonbonChoisi.Stock);
+                    } 
+                }
+                
                 Console.WriteLine("\nAppuyez sur une touche pour acheter d'autre bonbon...");
                 Console.ReadLine();
                 Console.WriteLine("\n\n\n");
+                
             }
         }
 
@@ -72,6 +67,7 @@ namespace Projet
             return selection;
         }
 
+        // QUESTION POUR HIND RESET DES DATA A CHAQUE LOOP??
         static Candy GetCandy(int choixBonbon) // retourne les informations du bonbon selectionne
         {
             Candy[] bonbon = loadCandies(); // Pour loader les bonbons
