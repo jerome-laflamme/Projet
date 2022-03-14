@@ -13,6 +13,7 @@ namespace Project
             string messageString = PadBoth(message == "" ? "VOTRE CHOIX ?" : message, 33);//affichage message à l'utilisateur avant de compléter l'achat
             string resultString = PadBoth(result, 24);//message résultat après l'achat
             Console.Clear();
+            Console.WriteLine($"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"); // solution esthetique peu esthetique
             Console.WriteLine($"-----------------------------------");
             Console.WriteLine($"|        Machine à bonbons        |");
             Console.WriteLine($"|----------------------------------");

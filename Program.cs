@@ -36,12 +36,11 @@ namespace Projet
                         // TRANSACTION COMPLETE
                         Board.Print("Prenez votre friandise...", input, bonbonChoisi.Price, sommeRecue, sommeRecue - bonbonChoisi.Price, bonbonChoisi.Name); // Final print
                         bonbonChoisi.Stock--; // retirer 1 bonbon de l'inventaire 
-                        Console.WriteLine(bonbonChoisi.Stock);
                     } 
                 }
                 
                 Console.WriteLine("\nAppuyez sur une touche pour acheter d'autre bonbon...");
-                Console.ReadLine();
+                Console.ReadKey();
                 Console.WriteLine("\n\n\n");
                 
             }
