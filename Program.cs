@@ -7,23 +7,24 @@ namespace Projet
     {
         static void Main()
         {
+            Candy[] bonbon = loadCandies(); // Pour loader les bonbons
+            
             while (true) // MAIN LOOP
             {
                 int input;
                 decimal coins = 1, sommeRecue = 0;
                 input = getSelection(); // Demander le numero de bonbon
-                Candy bonbonChoisi = GetCandy(input -1); // Enregistrer le bonbon choisi dans une variable de type Candy
-                
+                Candy bonbonChoisi = GetCandy(input -1, bonbon); // Enregistrer le bonbon choisi dans une variable de type Candy
                 if (bonbonChoisi.Stock < 1) // s'assure que le bonbon est en stock
                 {
-                    Board.Print( $"{bonbonChoisi.Name} VIDE!", selection:input); // Imprimer que le bonbon choisi est hors stock
+                    Board.Print( $"{bonbonChoisi.Name} VIDE!", selection:input); // Imprimer que le bonbon choisi est hors stock      
                 }
                 else
                 {
                     while (bonbonChoisi.Price > sommeRecue && coins != 0) // Redemander de la monnaie tant qu'elle n'est pas 0 ou qu'elle n'a pas ete atteint
                     {
                         Board.Print(bonbonChoisi.Name, input, bonbonChoisi.Price, sommeRecue);// Imprimer le tableau au debut du loop pour montrer combien d'argent a ete recu
-                        coins = GetCoin(); // chaque loop, on demande a l'utilisateur de rentrer la somme que j'enregistre dans un variable
+                        coins = GetCoin(); // chaque loop, on demande a l'utilisateur de rent/home/jerome/RiderProjects/Projetrer la somme que j'enregistre dans un variable
                         sommeRecue += coins; // et je l'additionne a la somme recu
                     }
                     
@@ -38,11 +39,9 @@ namespace Projet
                         bonbonChoisi.Stock--; // retirer 1 bonbon de l'inventaire 
                     } 
                 }
-                
                 Console.WriteLine("\nAppuyez sur une touche pour acheter d'autre bonbon...");
                 Console.ReadKey();
                 Console.WriteLine("\n\n\n");
-                
             }
         }
 
@@ -67,9 +66,8 @@ namespace Projet
         }
 
         // QUESTION POUR HIND RESET DES DATA A CHAQUE LOOP??
-        static Candy GetCandy(int choixBonbon) // retourne les informations du bonbon selectionne
+        static Candy GetCandy(int choixBonbon, Candy[] bonbon) // prend le input du bonbon + le array Candy et retourne les informations du bonbon selectionne
         {
-            Candy[] bonbon = loadCandies(); // Pour loader les bonbons
             return bonbon[choixBonbon]; //Et retourner le bonbon linker avec le choix de l'utilisateur
         } 
 
@@ -89,7 +87,7 @@ namespace Projet
                 Console.Write("->");
                 input = Byte.Parse(Console.ReadLine());
             }
-
+            
             switch (input) // input = montant
             { 
                 default: // par defaut, aucune monnaie est entree
@@ -104,11 +102,7 @@ namespace Projet
                   return 1m;
               case 5:
                   return 2m;
-              
             }
-
         }
-
-
     }
 }
